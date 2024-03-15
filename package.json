@@ -1,0 +1,25 @@
+{
+  "name": "json-api",
+  "version": "1.0.0",
+  "description": "This is a node_modules package that lets users access or use database like structure with Json files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "json",
+    "rest",
+    "jsonApi"
+  ],
+  "author": "Samuel Paschalson aka Chinomso Iyasara",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "json-aggregate": "^0.1.2",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.0"
+  }
+}
