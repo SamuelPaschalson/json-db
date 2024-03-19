@@ -1,4 +1,4 @@
-# json-api
+# json-db
 This is a node_modules package that lets users access or use database like structure with Json files
 
 ## License
