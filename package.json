@@ -1,5 +1,5 @@
 {
-  "name": "json-api",
+  "name": "jsondb",
   "version": "1.0.0",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
   "main": "index.js",
