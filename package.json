@@ -1,14 +1,17 @@
 {
-  "name": "jsondb",
+  "name": "@json-db",
   "version": "1.0.0",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
-  "main": "index.js",
+  "main": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SamuelPaschalson/json-api.git"
+    "url": "https://github.com/SamuelPaschalson/json-db.git"
   },
   "keywords": [
     "api",
@@ -17,7 +20,7 @@
     "jsonApi"
   ],
   "author": "Samuel Paschalson aka Chinomso Iyasara",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "ajv": "^8.12.0",
     "cors": "^2.8.5",
