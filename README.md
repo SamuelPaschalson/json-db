@@ -1,4 +1,4 @@
-# @json-db
+# @samuelpaschalson/json-db
 This is a package that lets users access or use database like structure with Json files
 
 Fast, unopinionated, minimalist web framework for [Node.js](http://nodejs.org).
@@ -14,7 +14,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-$ npm install @json-db
+$ npm install @samuelpaschalson/json-db
 ```
 ## Features
 
@@ -37,7 +37,7 @@ $ npm install @json-db
 ## Features Summary
 
 ```js
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 ````
 The `jsondb` uses a json file as a database, providing user the same experience a mongodb or mysql modules provides them, but while offline. Note this is just the first release, more releases coming soon with more functionalities.
 
@@ -96,7 +96,7 @@ The .save(req.body), saves the posted request to the json database
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
@@ -134,7 +134,7 @@ The .findByIdAndUpdate(req.body), finds the data by the id in the parameters and
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
@@ -179,7 +179,7 @@ The .findByIdAndDelete(req.params.id), deletes the data from the id inserted int
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
@@ -223,7 +223,7 @@ The .aggregate performs aggregation operations on the loaded data from the json 
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
@@ -269,7 +269,7 @@ This displays all the data in the json file
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
@@ -308,7 +308,7 @@ This finds a single object matching the provided query object
 <h4>Example</h4>
 
 ```javascript
-const jsondb = require('@json-db');
+const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
 const User = new jsondb.Schema({ 
