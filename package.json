@@ -1,6 +1,6 @@
 {
   "name": "@samuelpaschalson/json-db",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
   "main": "./index.js",
   "publishConfig": {
@@ -17,7 +17,7 @@
     "api",
     "json",
     "rest",
-    "jsonApi"
+    "jsonDb"
   ],
   "author": "Samuel Paschalson aka Chinomso Iyasara",
   "license": "MIT",
