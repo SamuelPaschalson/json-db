@@ -24,8 +24,8 @@ $ npm install @samuelpaschalson/json-db
 <li>Performs aggregation operations similar to Mongoose aggregation pipeline. (Currently supports $match, $project, $sample, $sort, $limit, $group and $skip)</li>
 <li>Provides an asynchronous method for finding a single object based on a query.</li>
 <li> Provides an asynchronous method for inserting new data into the json database file.</li>
-<li>Provides an asynchronous method for finding data based on the id in the parameters and updates the id.</li>
-<li> Provides an asynchronous method for deleting data from the json file using the id based on a query.</li>
+<li>Provides an asynchronous method for finding data based on the _id in the parameters and updates the _id.</li>
+<li> Provides an asynchronous method for deleting data from the json file using the _id based on a query.</li>
 
 ### Schema
 <li><b>Data Type Validation:</b> Ensures data adheres to the specified types (String, Number, Boolean, uuid, Mixed, Array).</li>
@@ -44,7 +44,7 @@ The `jsondb` uses a json file as a database, providing user the same experience 
 ### Creates An instance Schema()
 
 Creates a new `.Schema()` object, it accepts object data using the following parameters.<br>
-A new _id is generated for each data, but the _id can be replaced by your own id, a tutorial would be provided below. 
+A new _id is generated for each data, but the _id can be replaced by your own _id, a tutorial would be provided below. 
 
 ```js
     new jsondb.Schema({ 
@@ -73,280 +73,51 @@ This creates a model function that enables you run the schema and inserts your d
 **Note:** all three datas should be the same
 
 ```js
-    jsondb.model('User', User, 'user')
+    jsondb.model('', , 'user')
 ````
 
 ## API Summary
 
 |  |  |
 | --- | --- |
-| [`User.save(req.body)`](#save) | The .save(req.body), saves the posted request to the json database |
-| [`.findByIdAndUpdate(req.body)`](#findbyidandupdate) | The .findByIdAndUpdate(req.body), finds the data by the id in the parameters and pushes the req.body to the id |
+| [`.save(req.body)`](#save) | The .save(req.body), saves the posted request to the json database |
+| [`.findByIdAndUpdate(req.body, req.param.id)`](#findbyidandupdate) | The .findByIdAndUpdate(req.body, req.param.id), finds the data by the id in the parameters and pushes the req.body to the _id |
 | [`.findByIdAndDelete(req.params.id)`](#findbyidanddelete) | The .findByIdAndDelete(req.params.id), deletes the data from the id inserted into the parameter  |
 | [`.aggregate(pipeline)`](#aggregate) | The .aggregate performs aggregation operations on the loaded data from the json file based on provided pipelines, check the accepted pipelines below |
 | [`.getAll()`](#getall) | This displays all the data in the json file |
 | [`.findOne(req.body)`](#findone) | This finds a single object matching the provided query object |
+| [`.findById(req.params.id)`](#findone) | This finds a single object matching the provided id |
 
 ## API
 
-### User.save(req.body)
+### .save(req.body)
 
-The .save(req.body), saves the posted request to the json database
+For an example checkout the [Usage.md](USAGE.md)
 
-<h4>Example</h4>
+### .findByIdAndUpdate(req.body)
 
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
+For an example checkout the [Usage.md](USAGE.md)
 
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
+### .findByIdAndDelete(req.body)
 
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
+For an example checkout the [Usage.md](USAGE.md)
 
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
+### .aggregate(pipeline)
 
-// CREATE NEW DATA
-router.post('/', async (req, res) => {
-  const userdata = req.body; // Assuming the post data is in the request body
-  // Post the data using your exported model data
-  try {
-    const userMovie = await User.save(userdata)
-    res.status(200).json({ message: 'User saved successfully' }); //display success message
-  } catch (err) {
-    res.status(500).json(err); //display error message
-  }
-});
+For an example checkout the [Usage.md](USAGE.md)
 
-```
+### .getAll()
 
-### User.findByIdAndUpdate(req.body)
+For an example checkout the [Usage.md](USAGE.md)
 
-The .findByIdAndUpdate(req.body), finds the data by the id in the parameters and pushes the req.body to the id
+### .findOne(req.body)
 
-<h4>Example</h4>
+For an example checkout the [Usage.md](USAGE.md)
 
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
+### .findById(req.params.id)
 
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
+For an example checkout the [Usage.md](USAGE.md)
 
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
-
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
-
-// UPDATE EXISTING DATA
-router.put('/:id', async (req, res) => {
-  // const userId = req.params.id; // Assuming the ID is in the URL parameter
-  const updates = req.body; // Assuming the update data is in the request body
-
-  // Update the users using your User
-  try {
-    const updatedUser = await User.findByIdAndUpdate(updates)
-    if (updatedUser) {
-      res.status(200).json(updatedUser); // Send the updated movie data
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Error finding or updating user' });
-  }
-});
-
-```
-
-### User.findByIdAndDelete(req.body)
-
-The .findByIdAndDelete(req.params.id), deletes the data from the id inserted into the parameters
-
-<h4>Example</h4>
-
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
-
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
-
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
-
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
-
-// DELTE DATA BY ID
-router.delete('/:id', async (req, res) => {
-  const deleteId = req.params.id; // Assuming the ID is in the URL parameter
-  console.log(deleteId);
-  // Delete the user using your User
-  try {
-    const deletedUser = await User.findByIdAndDelete(deleteId)
-    if (deletedUser) {
-      res.status(200).json({message: 'User deleted successfully!'}); // Send the deleted message
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'Error finding or deleting user' });
-  }
-});
-
-```
-
-### User.aggregate(pipeline)
-
-The .aggregate performs aggregation operations on the loaded data from the json file based on provided pipelines, check the accepted pipelines below
-
-<h4>Example</h4>
-
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
-
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
-
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
-
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
-
-// DELTE DATA BY ID
-router.get('/randomUser', async (req, res) => {
-  const age = req.query.age; // Assuming age is an optional filter in the query string
-  let user = [];
-  try {
-    const filter = age >== 14 ? { isStudent: "true" } : { isStudent: "false" }; // Dynamic filter based on age
-    user = await User.aggregate([
-      { $match: filter },
-      { $group:  },
-      { $sort:  },
-      { $sample: 5 } // Allow filtering by any field in the query string
-    ]);
-    res.status(200).json(user); // Return the user datas from the array
-  } catch (err) {
-    console.error('Error getting random user:', err);
-    res.status(500).json({ message: 'Error finding random user' });
-  }
-});
-
-```
-
-
-### User.getAll()
-
-This displays all the data in the json file
-
-<h4>Example</h4>
-
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
-
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
-
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
-
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
-
-// DISPLAY ALL THE DATA
-router.get('/', async (req, res) => {
-  // console.log(req);
-  try {
-    const users = await User.getAll();
-    res.status(200).json(users);
-  } catch (err) {
-    console.error('Error getting all users:', err);
-    res.status(500).json({ message: 'Error retrieving users' });
-  }
-});
-
-```
-
-
-### User.findOne(req.body)
-
-This finds a single object matching the provided query object
-
-<h4>Example</h4>
-
-```javascript
-const jsondb = require('@samuelpaschalson/json-db');
-
-// Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, default: 'john', required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: STring }
-})
-
-// Call the model function
-module.exports = jsondb.model('User', User, 'user')
-
-// if your User.js file is in another folder, else then do not add this line
-const User = require('path-to-folder/User');
-
-router.post('/login', async (req, res) => {
-  const userdata = ({
-      name: req.body.name
-  });
-  console.log(req.body);
-  // Post the data using your exported model data
-  try {
-    const newUser = await User.findOne(userdata)
-    res.status(200).json(newUser); //display user data
-  } catch (err) {
-    res.status(500).json(err); //display error message
-  }
-});
-
-```
-
-<!-- ## Buy Me A Cup Of Coffee
-Like the npm package? and would like to see more functionalities, buy me a cup of coffee to fuel me while working<br>
-**Bitcoin:** [Wallet Address: bc1qw9p3gud48d9c8dhnepj8weudfugjtdehnw0ztu](bc1qw9p3gud48d9c8dhnepj8weudfugjtdehnw0ztu)<br>
-**Ethereum:** [Wallet Address: 0xE495F4EE4CF614B34b51714d4711AE458f224c2D](0xE495F4EE4CF614B34b51714d4711AE458f224c2D)<br>
-**Paypal:** [Paypal Address: iyasarachinomso35@gmail.com](iyasarachinomso35@gmail.com)<br>
-**Binance:** [Wallet Address: 0xE495F4EE4CF614B34b51714d4711AE458f224c2D](0xE495F4EE4CF614B34b51714d4711AE458f224c2D)<br> -->
 
 ## Contact Me
 Have a feature or a functionality which you would like to see, send me a message on Gmail [samuelpaschalson@gmail.com](samuelpaschalson@gmail.com)

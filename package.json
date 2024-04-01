@@ -1,6 +1,6 @@
 {
   "name": "@samuelpaschalson/json-db",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
   "main": "./index.js",
   "publishConfig": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SamuelPaschalson/json-db.git"
+    "url": "git+https://github.com/SamuelPaschalson/json-db.git"
   },
   "keywords": [
     "api",
