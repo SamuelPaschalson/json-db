@@ -1,6 +1,6 @@
 {
   "name": "@samuelpaschalson/json-db",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
   "main": "./index.js",
   "publishConfig": {

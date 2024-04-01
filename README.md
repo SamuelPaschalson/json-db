@@ -73,7 +73,7 @@ This creates a model function that enables you run the schema and inserts your d
 **Note:** all three datas should be the same
 
 ```js
-    jsondb.model('', , 'user')
+    jsondb.model('User',User, 'user')
 ````
 
 ## API Summary
