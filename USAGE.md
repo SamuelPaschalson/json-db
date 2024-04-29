@@ -10,16 +10,16 @@ Here's a simple example. To use the functions of `@samuelpaschalson/json-db`:
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
@@ -29,13 +29,12 @@ router.post('/', async (req, res) => {
   const userdata = req.body; // Assuming the post data is in the request body
   // Post the data using your exported model data
   try {
-    const userMovie = await User.save(userdata)
-    res.status(200).json({ message: 'User saved successfully' }); //display success message
+    const userMovie = await User.save(userdata);
+    res.status(200).json({message: 'User saved successfully'}); //display success message
   } catch (err) {
     res.status(500).json(err); //display error message
   }
 });
-
 ```
 
 ## .findByIdAndUpdate(req.body, req.param.id)
@@ -46,16 +45,16 @@ router.post('/', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
@@ -67,18 +66,17 @@ router.put('/:id', async (req, res) => {
 
   // Update the users using your User
   try {
-    const updatedUser = await User.findByIdAndUpdate(updates, userId)
+    const updatedUser = await User.findByIdAndUpdate(updates, userId);
     if (updatedUser) {
       res.status(200).json(updatedUser); // Send the updated movie data
     } else {
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({message: 'User not found'});
     }
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'Error finding or updating user' });
+    res.status(500).json({message: 'Error finding or updating user'});
   }
 });
-
 ```
 
 ## .findByIdAndDelete(req.body)
@@ -89,16 +87,16 @@ router.put('/:id', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
@@ -109,18 +107,17 @@ router.delete('/:id', async (req, res) => {
   console.log(deleteId);
   // Delete the user using your User
   try {
-    const deletedUser = await User.findByIdAndDelete(deleteId)
+    const deletedUser = await User.findByIdAndDelete(deleteId);
     if (deletedUser) {
       res.status(200).json({message: 'User deleted successfully!'}); // Send the deleted message
     } else {
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({message: 'User not found'});
     }
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'Error finding or deleting user' });
+    res.status(500).json({message: 'Error finding or deleting user'});
   }
 });
-
 ```
 
 ## .aggregate(pipeline)
@@ -131,7 +128,7 @@ router.delete('/:id', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
+const User = new jsondb.Schema({
     name: { type: String, required: true, unqiue: true },
     gender: { type: String, default: 'male', required: true, unqiue: true },
     age: { type: Number, required: true, unqiue: true },
@@ -174,16 +171,16 @@ router.get('/randomUser', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
@@ -196,12 +193,10 @@ router.get('/', async (req, res) => {
     res.status(200).json(users);
   } catch (err) {
     console.error('Error getting all users:', err);
-    res.status(500).json({ message: 'Error retrieving users' });
+    res.status(500).json({message: 'Error retrieving users'});
   }
 });
-
 ```
-
 
 ## .findOne(req.body)
 
@@ -211,37 +206,35 @@ router.get('/', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
 
 // Fetch one data
 router.get('/name', async (req, res) => {
-  const userdata = ({
-      name: req.body.name
-  });
+  const userdata = {
+    name: req.body.name,
+  };
   console.log(req.body);
   // Post the data using your exported model data
   try {
-    const newUser = await User.findOne(userdata)
+    const newUser = await User.findOne(userdata);
     res.status(200).json(newUser); //display user data
   } catch (err) {
     res.status(500).json(err); //display error message
   }
 });
-
 ```
-
 
 ## .findById(req.params.id)
 
@@ -251,31 +244,85 @@ router.get('/name', async (req, res) => {
 const jsondb = require('@samuelpaschalson/json-db');
 
 // Instantiate a new Schema
-const User = new jsondb.Schema({ 
-    name: { type: String, required: true, unqiue: true },
-    gender: { type: String, default: 'male', required: true, unqiue: true },
-    age: { type: Number, required: true, unqiue: true },
-    isStudent: { type: Boolean },
-    school: { type: String }
-})
+const User = new jsondb.Schema({
+  name: {type: String, required: true, unqiue: true},
+  gender: {type: String, default: 'male', required: true, unqiue: true},
+  age: {type: Number, required: true, unqiue: true},
+  isStudent: {type: Boolean},
+  school: {type: String},
+});
 
 // Call the model function
-module.exports = jsondb.model('User', User, 'user')
+module.exports = jsondb.model('User', User, 'user');
 
 // if your User.js file is in another folder, else then do not add this line
 const User = require('path-to-folder/User');
 
 // Fetch one data
 router.get('/find/:id', async (req, res) => {
-    const userid = req.params.id;
-    try {
-      const newUser = await User.findById(userid)
-      res.status(200).json(newUser); //display user data
-    } catch (err) {
-      res.status(500).json(err); //display error message
-    }
+  const userid = req.params.id;
+  try {
+    const newUser = await User.findById(userid);
+    res.status(200).json(newUser); //display user data
+  } catch (err) {
+    res.status(500).json(err); //display error message
+  }
 });
-  
-
 ```
 
+## Using the ref just like mongoose
+
+```
+const School = new jsonDb.Schema(
+    {
+        userId: { type: String, ref: "User", required: true }, // Reference to User model
+        image: { type: String, required: true },
+        schoolName: { type: String, required: true },
+
+    },
+    { timestamps: true }
+);
+
+module.exports = School;
+
+
+// Route to create a new School
+router.post("/school/student", async (req, res) => {
+    try {
+        const { userId, image, schoolName } = req.body;
+
+        // Check if the userId exists (reference validation)
+        const existingUser = await User.findById(userId);
+        if (!existingUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // Create a new School
+        const newSchool = await School.save({
+            userId,
+            image,
+            schoolName
+        });
+
+        res.status(201).json(newSchool);
+    } catch (error) {
+        console.error("Error creating school:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Route to get all school made by a user
+router.get("/users/:userId/school", async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        // Find all school with the specified userId
+        const userSchool = await School.findById(userId);
+
+        res.json(userSchool);
+    } catch (error) {
+        console.error("Error fetching school:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+```
