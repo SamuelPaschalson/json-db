@@ -1,6 +1,6 @@
 {
   "name": "@samuelpaschalson/json-db",
-  "version": "1.3.0",
+  "version": "1.5.0",
   "description": "This is a node_modules package that lets users access or use database like structure with Json files",
   "main": "./index.js",
   "publishConfig": {
@@ -25,6 +25,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "lodash": "^4.17.21",
+    "mongoose": "^8.4.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
     "uuid": "^9.0.0"
   }
 }

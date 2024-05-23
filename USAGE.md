@@ -272,57 +272,78 @@ router.get('/find/:id', async (req, res) => {
 
 ## Using the ref just like mongoose
 
-```
+```js
 const School = new jsonDb.Schema(
-    {
-        userId: { type: String, ref: "User", required: true }, // Reference to User model
-        image: { type: String, required: true },
-        schoolName: { type: String, required: true },
-
-    },
-    { timestamps: true }
+  {
+    userId: {type: String, ref: 'User', required: true}, // Reference to User model
+    image: {type: String, required: true},
+    schoolName: {type: String, required: true},
+  },
+  {timestamps: true},
 );
 
 module.exports = School;
 
-
 // Route to create a new School
-router.post("/school/student", async (req, res) => {
-    try {
-        const { userId, image, schoolName } = req.body;
+router.post('/school/student', async (req, res) => {
+  try {
+    const {userId, image, schoolName} = req.body;
 
-        // Check if the userId exists (reference validation)
-        const existingUser = await User.findById(userId);
-        if (!existingUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        // Create a new School
-        const newSchool = await School.save({
-            userId,
-            image,
-            schoolName
-        });
-
-        res.status(201).json(newSchool);
-    } catch (error) {
-        console.error("Error creating school:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+    // Check if the userId exists (reference validation)
+    const existingUser = await User.findById(userId);
+    if (!existingUser) {
+      return res.status(404).json({error: 'User not found'});
     }
+
+    // Create a new School
+    const newSchool = await School.save({
+      userId,
+      image,
+      schoolName,
+    });
+
+    res.status(201).json(newSchool);
+  } catch (error) {
+    console.error('Error creating school:', error);
+    res.status(500).json({error: 'Internal Server Error'});
+  }
 });
 
 // Route to get all school made by a user
-router.get("/users/:userId/school", async (req, res) => {
-    try {
-        const userId = req.params.userId;
+router.get('/users/:userId/school', async (req, res) => {
+  try {
+    const userId = req.params.userId;
 
-        // Find all school with the specified userId
-        const userSchool = await School.findById(userId);
+    // Find all school with the specified userId
+    const userSchool = await School.findById(userId);
 
-        res.json(userSchool);
-    } catch (error) {
-        console.error("Error fetching school:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
+    res.json(userSchool);
+  } catch (error) {
+    console.error('Error fetching school:', error);
+    res.status(500).json({error: 'Internal Server Error'});
+  }
+});
+```
+
+## Pushing to a MYSQL DATABASE
+
+```js
+// DISPLAY ALL THE DATA
+router.get('/mysql', async (req, res) => {
+  try {
+    const mysql = await User.Mysql(
+      {
+        host: 'hostname',
+        user: 'username',
+        password: '',
+        database: 'databasename',
+      },
+      tablename,
+    );
+    res.status(200).json(mysql);
+  } catch (err) {
+    console.error('Error Making MYSQL push:', err);
+    res.status(500).json({message: 'Error Making MYSQL push'});
+  }
 });
 ```

@@ -131,6 +131,14 @@ For an example checkout the [Usage.md](USAGE.md)
 
 Have a feature or a functionality which you would like to see, send me a message on Gmail [samuelpaschalson@gmail.com](samuelpaschalson@gmail.com)
 
+## 3rd party DATABASES
+
+### Mysql Support
+
+For an example checkout the [Usage.md](USAGE.md)
+
+### Mongoose support coming soon
+
 ## License
 
 [MIT](LICENSE.md) © [Samuel Paschalson aka Chinomso Iyasara](https://samuel-paschalson.netlify.app/)
